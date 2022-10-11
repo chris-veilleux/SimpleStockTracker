@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Choose An Account";
+}
+<h1>On this page, the user will select the account they want to show the chart for.</h1>
+<!-- Hardcoded links will instead become populated from the db -->
+<ul>
+    <li>
+        <a asp-controller="Overview" asp-action="Account" asp-route-Nickname="Retirement">Retirement</a>
+    </li>
+    <li>
+        <a asp-controller="Overview" asp-action="Account" asp-route-Nickname="New Car">New Car</a>
+    </li>
+    <li>
+        <a asp-controller="Overview" asp-action="Account" asp-route-Nickname="Donny's Education">Donny's Education</a>
+    </li>
+</ul>
