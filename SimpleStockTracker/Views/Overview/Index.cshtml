@@ -2,15 +2,15 @@
     ViewData["Title"] = "Choose An Account";
 }
 <h1>On this page, the user will select the account they want to show the chart for.</h1>
-<!-- Hardcoded links will instead become populated from the db -->
+<!-- Hardcoded links will need to be populated from the db OR match the db -->
 <ul>
     <li>
-        <a asp-controller="Overview" asp-action="Account" asp-route-Nickname="Retirement">Retirement</a>
+        <a asp-controller="Overview" asp-action="Account" asp-route-Name="Retirement">Retirement</a>
     </li>
     <li>
-        <a asp-controller="Overview" asp-action="Account" asp-route-Nickname="New Car">New Car</a>
+        <a asp-controller="Overview" asp-action="Account" asp-route-Name="New Car">New Car</a>
     </li>
     <li>
-        <a asp-controller="Overview" asp-action="Account" asp-route-Nickname="Donny's Education">Donny's Education</a>
+        <a asp-controller="Overview" asp-action="Account" asp-route-Name="Donny's Education">Donny's Education</a>
     </li>
 </ul>

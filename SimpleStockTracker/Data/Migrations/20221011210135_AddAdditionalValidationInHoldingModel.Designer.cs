@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SimpleStockTracker.Data;
 
@@ -11,13 +12,14 @@ using SimpleStockTracker.Data;
 namespace SimpleStockTracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221011210135_AddAdditionalValidationInHoldingModel")]
+    partial class AddAdditionalValidationInHoldingModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.9")
+                .HasAnnotation("ProductVersion", "6.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -224,34 +226,6 @@ namespace SimpleStockTracker.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("SimpleStockTracker.Models.Account", b =>
-                {
-                    b.Property<int>("AccountId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AccountId"), 1L, 1);
-
-                    b.Property<string>("AccountHolder")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float?>("ContributionLimit")
-                        .HasColumnType("real");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("OpeningDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("AccountId");
-
-                    b.ToTable("Accounts");
-                });
-
             modelBuilder.Entity("SimpleStockTracker.Models.Holding", b =>
                 {
                     b.Property<int>("HoldingId")
@@ -260,7 +234,7 @@ namespace SimpleStockTracker.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HoldingId"), 1L, 1);
 
-                    b.Property<int>("AccountId")
+                    b.Property<int>("Account")
                         .HasColumnType("int");
 
                     b.Property<double>("Price")
@@ -283,8 +257,6 @@ namespace SimpleStockTracker.Data.Migrations
                         .HasColumnType("nvarchar(4)");
 
                     b.HasKey("HoldingId");
-
-                    b.HasIndex("AccountId");
 
                     b.ToTable("Holding");
                 });
@@ -338,22 +310,6 @@ namespace SimpleStockTracker.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("SimpleStockTracker.Models.Holding", b =>
-                {
-                    b.HasOne("SimpleStockTracker.Models.Account", "Account")
-                        .WithMany("Holdings")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Account");
-                });
-
-            modelBuilder.Entity("SimpleStockTracker.Models.Account", b =>
-                {
-                    b.Navigation("Holdings");
                 });
 #pragma warning restore 612, 618
         }

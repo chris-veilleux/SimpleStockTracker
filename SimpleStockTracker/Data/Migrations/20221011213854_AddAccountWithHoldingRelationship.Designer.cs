@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SimpleStockTracker.Data;
 
@@ -11,9 +12,10 @@ using SimpleStockTracker.Data;
 namespace SimpleStockTracker.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221011213854_AddAccountWithHoldingRelationship")]
+    partial class AddAccountWithHoldingRelationship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -235,10 +237,10 @@ namespace SimpleStockTracker.Data.Migrations
                     b.Property<string>("AccountHolder")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float?>("ContributionLimit")
+                    b.Property<float>("ContributionLimit")
                         .HasColumnType("real");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nickname")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("OpeningDate")
