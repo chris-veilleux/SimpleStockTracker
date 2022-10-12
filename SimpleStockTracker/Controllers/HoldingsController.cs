@@ -48,7 +48,7 @@ namespace SimpleStockTracker.Controllers
         // GET: Holdings/Create
         public IActionResult Create()
         {
-            ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "AccountId");
+            ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Name");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace SimpleStockTracker.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "AccountId", holding.AccountId);
+            ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Name", holding.AccountId);
             return View(holding);
         }
 
@@ -82,7 +82,7 @@ namespace SimpleStockTracker.Controllers
             {
                 return NotFound();
             }
-            ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "AccountId", holding.AccountId);
+            ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Name", holding.AccountId);
             return View(holding);
         }
 
@@ -118,7 +118,7 @@ namespace SimpleStockTracker.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "AccountId", holding.AccountId);
+            ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Name", holding.AccountId);
             return View(holding);
         }
 

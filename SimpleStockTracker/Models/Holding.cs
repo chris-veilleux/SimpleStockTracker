@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace SimpleStockTracker.Models
 {
@@ -9,9 +10,11 @@ namespace SimpleStockTracker.Models
         [MaxLength(5)]
         public string? Ticker { get; set; }
         [Required]
+        [DisplayName("Trade Date")]
         public DateTime TradeDate { get; set; }
         [Required]
         [MaxLength(4)]
+        [DisplayName("Trade Type")]
         public string? TradeType { get; set; }
         [Required]
         [Range(0, Double.PositiveInfinity)]
