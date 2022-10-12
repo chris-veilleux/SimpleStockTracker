@@ -9,4 +9,6 @@ On the Accounts page, users are shown a list of accounts they have entered. From
 
 On the Holdings page, users are shown a list of holdings (displayed as Buys and Sells of stock shares) and what account they were purchased in. As with the accounts page, they can then create a new holding, view details of existing holdings, edit existing holdings, or delete existing holdings.
 
+[Click here](https://simplestocktracker.azurewebsites.net/) to view the live site hosted on Azure.
+
 Site logo created with https://logomakr.com/app/.
