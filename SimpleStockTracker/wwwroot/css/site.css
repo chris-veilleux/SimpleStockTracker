@@ -86,3 +86,15 @@ td{
 .logo-img{
     height: 50px;
 }
+
+#profile, #email, #change-password, #external-login, #two-factor, #personal-data {
+    color: #7481e6 !important;
+}
+
+a#profile.nav-link.active, a#email.nav-link.active, a#change-password.nav-link.active, a#external-login.nav-link.active, a#two-factor.nav-link.active, a#personal-data.nav-link.active {
+    background-color: rgba(255,255,255,0.3) !important;
+}
+
+.text-info {
+    color: #202020 !important;
+}
