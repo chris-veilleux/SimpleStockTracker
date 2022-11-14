@@ -5,10 +5,12 @@
 }
 
 <h1>@ViewData["Title"]</h1>
-
-<p>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
-</p>
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </p>
+}
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
@@ -35,33 +37,40 @@
             </tr>
         </thead>
         <tbody>
-    @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Ticker)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TradeDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TradeType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantity)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Account.Name)
-                </td>
-                <td>
-                        <a asp-action="Edit" asp-route-id="@item.HoldingId" class="btn btn-sm btn-warning">Edit</a> 
-                        <a asp-action="Details" asp-route-id="@item.HoldingId" class="btn btn-sm btn-secondary">Details</a> 
-                        <a asp-action="Delete" asp-route-id="@item.HoldingId" class="btn btn-sm btn-danger">Delete</a>
-                </td>
-            </tr>
-    }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ticker)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TradeDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TradeType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Account.Name)
+                    </td>
+                    <td>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-action="Edit" asp-route-id="@item.HoldingId" class="btn btn-sm btn-warning">Edit</a>
+                        }
+                        <a asp-action="Details" asp-route-id="@item.HoldingId" class="btn btn-sm btn-secondary">Details</a>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.HoldingId" class="btn btn-sm btn-danger">Delete</a>
+                        }
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
