@@ -14,6 +14,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
+// add swagger for api documentation
+builder.Services.AddSwaggerGen();
+
 // Google auth - keys stored in appsettings.json
 builder.Services.AddAuthentication()
     .AddGoogle(options =>
@@ -28,6 +31,10 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
+
+    // enable Swagger and its UI class to create HTML-formatted API docs
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 else
 {
@@ -48,5 +55,10 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
+// set options for Swagger API docs
+app.UseSwaggerUI(options => {
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "SimpleStockTracker API Documentation V1");
+});
 
 app.Run();
