@@ -26,7 +26,7 @@ namespace SimpleStockTracker.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.Holding.Include(h => h.Account);
-            return View(await applicationDbContext.ToListAsync());
+            return View("Index", await applicationDbContext.ToListAsync());
         }
 
         [AllowAnonymous]
