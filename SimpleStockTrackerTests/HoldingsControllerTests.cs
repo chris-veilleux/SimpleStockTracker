@@ -36,6 +36,7 @@ namespace SimpleStockTrackerTests
 
         }
 
+        #region "Index Tests"
         [TestMethod]
         public void IndexLoadsView()
         {
@@ -59,5 +60,63 @@ namespace SimpleStockTrackerTests
             // assert
             CollectionAssert.AreEqual(context.Holding.ToList(), model);
         }
+        #endregion
+
+        #region "Details Tests"
+        [TestMethod]
+        public void DetailsNoIdLoads404()
+        {
+            // act
+            var result = (ViewResult)controller.Details(null).Result;
+
+            // assert
+            Assert.AreEqual("404", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DetailsNoHoldingsTableLoads404()
+        {
+            // arrange
+            context.Holding = null;
+
+            // act
+            var result = (ViewResult)controller.Details(null).Result;
+
+            // assert
+            Assert.AreEqual("404", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DetailsInvalidIdLoads404()
+        {
+            // act
+            var result = (ViewResult)controller.Details(1000000).Result;
+
+            // assert
+            Assert.AreEqual("404", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DetailsValidIdLoadsView()
+        {
+            // act
+            var result = (ViewResult)controller.Details(50).Result;
+
+            // assert
+            Assert.AreEqual("Details", result.ViewName);
+
+        }
+
+        [TestMethod]
+        public void DetailsValidIdLoadsHolding()
+        {
+            // act
+            var result = (ViewResult)controller.Details(50).Result;
+
+            // assert
+            Assert.AreEqual(context.Holding.Find(50), result.Model);
+
+        }
+        #endregion
     }
 }

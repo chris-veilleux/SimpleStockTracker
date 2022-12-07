@@ -35,7 +35,7 @@ namespace SimpleStockTracker.Controllers
         {
             if (id == null || _context.Holding == null)
             {
-                return NotFound();
+                return View("404");
             }
 
             var holding = await _context.Holding
@@ -43,10 +43,10 @@ namespace SimpleStockTracker.Controllers
                 .FirstOrDefaultAsync(m => m.HoldingId == id);
             if (holding == null)
             {
-                return NotFound();
+                return View("404");
             }
 
-            return View(holding);
+            return View("Details", holding);
         }
 
         // GET: Holdings/Create
