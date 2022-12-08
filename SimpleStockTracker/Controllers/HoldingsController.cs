@@ -53,7 +53,7 @@ namespace SimpleStockTracker.Controllers
         public IActionResult Create()
         {
             ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Name");
-            return View();
+            return View("Create");
         }
 
         // POST: Holdings/Create
@@ -70,7 +70,7 @@ namespace SimpleStockTracker.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Name", holding.AccountId);
-            return View(holding);
+            return View("Create", holding);
         }
 
         // GET: Holdings/Edit/5
@@ -78,16 +78,16 @@ namespace SimpleStockTracker.Controllers
         {
             if (id == null || _context.Holding == null)
             {
-                return NotFound();
+                return View("404");
             }
 
             var holding = await _context.Holding.FindAsync(id);
             if (holding == null)
             {
-                return NotFound();
+                return View("404");
             }
             ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Name", holding.AccountId);
-            return View(holding);
+            return View("Edit", holding);
         }
 
         // POST: Holdings/Edit/5
@@ -95,11 +95,11 @@ namespace SimpleStockTracker.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HoldingId,Ticker,TradeDate,TradeType,Quantity,Price,AccountId")] Holding holding)
+        public async Task<IActionResult> Edit(int? id, [Bind("HoldingId,Ticker,TradeDate,TradeType,Quantity,Price,AccountId")] Holding holding)
         {
             if (id != holding.HoldingId)
             {
-                return NotFound();
+                return View("404");
             }
 
             if (ModelState.IsValid)
@@ -113,7 +113,7 @@ namespace SimpleStockTracker.Controllers
                 {
                     if (!HoldingExists(holding.HoldingId))
                     {
-                        return NotFound();
+                        return View("404");
                     }
                     else
                     {
@@ -123,7 +123,7 @@ namespace SimpleStockTracker.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Name", holding.AccountId);
-            return View(holding);
+            return View("Edit", holding);
         }
 
         // GET: Holdings/Delete/5
@@ -131,7 +131,7 @@ namespace SimpleStockTracker.Controllers
         {
             if (id == null || _context.Holding == null)
             {
-                return NotFound();
+                return View("404");
             }
 
             var holding = await _context.Holding
@@ -139,10 +139,10 @@ namespace SimpleStockTracker.Controllers
                 .FirstOrDefaultAsync(m => m.HoldingId == id);
             if (holding == null)
             {
-                return NotFound();
+                return View("404");
             }
 
-            return View(holding);
+            return View("Delete", holding);
         }
 
         // POST: Holdings/Delete/5
