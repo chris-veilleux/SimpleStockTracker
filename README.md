@@ -11,6 +11,8 @@ On the Accounts page, users are shown a list of accounts they have entered. From
 
 On the Holdings page, users are shown a list of holdings (displayed as Buys and Sells of stock shares) and what account they were purchased in. As with the accounts page, they can then create a new holding, view details of existing holdings, edit existing holdings, or delete existing holdings.
 
+Methods in the Holdings controller are covered by unit tests to ensure proper functionality.
+
 ![holdings-page](https://user-images.githubusercontent.com/82720132/212564751-9a1ff04c-45dc-4df8-a7bc-11a8a0ee91a0.jpg)
 
 Note: To create, edit, or delete accounts and holdings, users must be registered and logged in to their account. Accounts can be created either through local registration or by using Google authentication.
