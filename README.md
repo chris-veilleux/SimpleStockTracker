@@ -17,6 +17,4 @@ Methods in the Holdings controller are covered by unit tests to ensure proper fu
 
 Note: To create, edit, or delete accounts and holdings, users must be registered and logged in to their account. Accounts can be created either through local registration or by using Google authentication.
 
-### [Click here](https://simplestocktracker.azurewebsites.net/) to view the live site hosted on Azure.
-
 Site style was customized by using a different colour scheme, font, logo, and other minor styling changes. Logo created with https://logomakr.com/app/.
